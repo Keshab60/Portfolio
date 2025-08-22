@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeSection, setActiveSection] = React.useState('');

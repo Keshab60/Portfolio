@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Twitter } from 'lucide-react';
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+console.log({ serviceId, templateId, publicKey });
+
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -33,8 +38,8 @@ const Contact = () => {
     try {
       // Replace these with your actual EmailJS service ID, template ID, and public key
       const result = await emailjs.send(
-        'service_7o3iq0c',
-        'template_63uy4jp',
+        serviceId,
+        templateId,
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -42,7 +47,7 @@ const Contact = () => {
           message: formData.message,
           to_name: 'Keshab Gouda',
         },
-        't9G9JE6YBE4hLyLU-'
+        publicKey
       );
 
       if (result.status === 200) {
@@ -127,7 +132,9 @@ const Contact = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
+        
         >
+        
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Get In Touch
           </h2>
